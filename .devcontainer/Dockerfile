@@ -15,7 +15,9 @@ RUN apt-get update && \
       ca-certificates \
       curl \
       gnupg-agent \
-      software-properties-common 
+      software-properties-common \
+      npm
+
 
 
 # Install Docker CLI
@@ -102,6 +104,8 @@ RUN echo 'export PATH="/root/.krew/bin:$PATH"' >> ~/.bashrc
 ENV PATH="/root/.krew/bin:${PATH}"      
 
 RUN kubectl krew install stern
+
+RUN npm install -g aws-cdk
 
 
 RUN echo "alias k='kubectl'" >> ~/.bashrc

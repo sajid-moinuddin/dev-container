@@ -31,7 +31,8 @@
         "github.copilot",
         "github.copilot-chat",
         "VisualStudioExptTeam.vscodeintellicode",
-        "Oracle.oracle-java"
+        "Oracle.oracle-java",
+        "amazonwebservices.aws-toolkit-vscode"
     ],
 
     "mounts": [
