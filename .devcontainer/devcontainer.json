@@ -1,0 +1,66 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+    "name": "Java Spring Boot Development",
+    "dockerFile": "Dockerfile",
+    "settings": { 
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "runArgs": [
+       "--network=host",
+        "--privileged",
+        "-v", "/var/run/docker.sock:/var/run/docker.sock"
+    ],
+    "plugins": [
+        "MetalBear.mirrord"
+    ],
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-maven",
+        "github.vscode-github-actions",
+        "vscjava.vscode-spring-boot-dashboard",
+        "redhat.java",
+        "vscjava.vscode-java-dependency",
+        "ms-azuretools.vscode-docker",
+        "MetalBear.mirrord",
+        "GitHub.vscode-pull-request-github",
+        "visualstudioexptteam.intellicode-api-usage-examples",
+        "visualstudioexptteam.vscodeintellicode",
+        "github.copilot",
+        "github.copilot-chat",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "Oracle.oracle-java"
+    ],
+
+    "mounts": [
+        "source=${localEnv:HOME}/.m2,target=/root/.m2,type=bind",
+        "source=${localEnv:HOME}/.netrc,target=/root/.netrc,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind" ,
+        "source=${localEnv:HOME}/.kube,target=/root/.kube,type=bind",
+        "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+        // "source=${localEnv:HOME}/.config/gh/hosts.yml,target=/root/.config/gh/hosts.yml,type=bind",
+    ],
+	// Features to add to the dev container. More info: https://containers.dev/features.
+    "features": {
+        // "github-cli": "latest",
+        // "git": "latest",
+        // "aws-cli": "latest"
+
+    },
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+//    "forwardPorts": [8080],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+    // "postCreateCommand": "sudo usermod -aG doroot"    
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
