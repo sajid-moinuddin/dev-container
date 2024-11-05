@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
     "name": "Java Spring Boot Development",
-    "dockerFile": "Dockerfile",
+    "dockerFile": "../Dockerfile",
     "settings": { 
         "terminal.integrated.shell.linux": "/bin/bash"
     },
