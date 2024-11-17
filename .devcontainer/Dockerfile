@@ -88,7 +88,7 @@ ENV PATH="${SDKMAN_DIR}/bin:${PATH}"
 #     sdk install maven ${MAVEN_VERSION}
 
 ARG NVM_VERSION=0.39.1
-ARG NODE_VERSION=14.17.0
+ARG NODE_VERSION=20.0.0
 # Install NVM (Node Version Manager)
 RUN sudo wget  https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh && \
     sudo chmod +x install.sh && \
@@ -106,7 +106,9 @@ RUN export NVM_DIR="$HOME/.nvm" && \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  && nvm --version && \
     nvm install ${NODE_VERSION} && \
     nvm use ${NODE_VERSION} && \
-    nvm alias default ${NODE_VERSION}
+    nvm alias default ${NODE_VERSION} && \
+    npm install -g aws-cdk@${AWS_CDK_VERSION}
+
 
 
 # # Install GitHub Hub
