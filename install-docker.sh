@@ -1,14 +1,48 @@
-# Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+#!/bin/bash
 
-# Add the repository to Apt sources:
+# Update the package index
+sudo apt-get update
+
+# Install packages to allow apt to use a repository over HTTPS
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+# Add Docker’s official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# Set up the stable repository
 echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update the package index again
 sudo apt-get update
 
+# Install the latest version of Docker Engine and containerd
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Verify that Docker Engine is installed correctly by running the hello-world image
+sudo docker run hello-world
+
+
+# Update the package index again
+sudo apt-get update
+
+# Install the latest version of Docker Engine and containerd
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Create the Docker group
+sudo groupadd docker
+
+# Add your user to the Docker group
+sudo usermod -aG docker $USER
+
+# Apply the new group membership
+newgrp docker
+
+# Verify that Docker Engine is installed correctly by running the hello-world image
+docker run hello-world
